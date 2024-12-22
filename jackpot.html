@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jack pot</title>
+<style>
+ 
+body{
+    
+    
+    background-size: 100%;
+    background-image: url(bg.jpg);
+    
+}
+.head{
+     text-align: center;
+     color: black;
+     font-size: 50px;
+}
+
+#btn{
+    font-size:25px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 20%;
+    
+}
+.tot{
+    color:white;
+}
+
+#maina{
+    border: white 5px solid;
+    font-size: 40px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+#btn-re{
+    font-size:25px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 20%;
+    display: none;
+    margin-top: 5px;
+
+}
+img{
+    margin-left: 15px;
+}
+
+.container{
+  height: 70px;
+  width: 550px;
+  margin: 20px auto;
+  margin-top:25px;
+  border-radius:15px;
+  background-color: aquamarine;
+}
+</style>
+</head>
+<body>
+    <div class="background"></div>
+    <h1 class="head container">JACKPOAT GAME</h1>
+    <button id="btn" onclick="main()">generate card</button>
+    <button id="btn-re" onclick="restart()">restart</button>
+    <h1 class="tot">curent totel:</h1>
+    <h1 class="tot" id="resalt">0</h1>
+    <div id="maina" ></div>
+
+
+
+
+
+
+
+
+ <script>
+function main(){
+   let com =   document.getElementById("maina").innerHTML;
+   if (com == "you lose !"){
+    alert("game over! plase restart game");
+   }else{
+
+    let x;
+     do{ 
+        x = Math.floor(Math.random()*100/7.6);
+    }while (x==0);
+
+    let ctot = parseInt(document.getElementById("resalt").innerHTML);
+    let totel = ctot + x ;
+    document.getElementById("resalt").innerHTML = totel ;
+
+    if(totel < 21){
+
+        document.getElementById("maina").innerHTML = "generate another card"
+
+    }else if (totel == 21){
+
+        document.getElementById("maina").innerHTML = "you have won !"
+        alert("congratulations!");
+        document.getElementById("btn-re").style.display = 'block'
+    }else if (totel > 21){
+
+        
+        document.getElementById("maina").innerHTML = "you lose !"
+        alert("lost , click restart tio play again ");
+        document.getElementById("btn-re").style.display = 'block'   
+    }
+
+
+    let img = document.createElement("img");
+    img.src = x + ".png"; 
+    img.height=200;
+
+    document.body.appendChild(img);
+
+}
+
+}
+
+function restart(){
+    location.reload();
+}
+
+</script>
+</body>
+</html>
